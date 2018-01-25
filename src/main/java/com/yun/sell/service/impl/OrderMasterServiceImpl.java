@@ -133,6 +133,13 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
     @Override
     public OrderDTO cancel(OrderDTO orderDTO) {
+        //1.判断订单状态
+
+        //2.修改订单状态
+
+        //3.返回库存
+
+        //4.如果已支付需要退款
         return null;
     }
 }
