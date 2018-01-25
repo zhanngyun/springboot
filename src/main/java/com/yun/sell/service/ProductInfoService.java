@@ -12,6 +12,12 @@ public interface ProductInfoService extends BaseService<ProductInfo,String>{
 
     List<ProductInfo> findByProductStatus(Integer productStatus);
 
+    /** 查询所有的上架商品*/
+    List<ProductInfo> findProductUp();
+
+    /** 查询所有的下架的商品*/
+    List<ProductInfo> findProductDown();
+
     //加库存
 
 

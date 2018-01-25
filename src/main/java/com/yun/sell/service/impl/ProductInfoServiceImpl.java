@@ -1,6 +1,7 @@
 package com.yun.sell.service.impl;
 
 import com.yun.sell.domain.ProductInfo;
+import com.yun.sell.enums.ProductStatusEnum;
 import com.yun.sell.repository.ProductInfoRepository;
 import com.yun.sell.service.ProductInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,16 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     @Override
     public Page<ProductInfo> findAll(Pageable pageable) {
         return productInfoRepository.findAll(pageable);
+    }
+
+
+    @Override
+    public List<ProductInfo> findProductUp() {
+        return productInfoRepository.findByProductStatus(ProductStatusEnum.UP.getCode());
+    }
+
+    @Override
+    public List<ProductInfo> findProductDown() {
+        return productInfoRepository.findByProductStatus(ProductStatusEnum.DOWN.getCode());
     }
 }
