@@ -1,5 +1,7 @@
 package com.yun.sell.domain;
 
+import com.yun.sell.enums.OrderStatusEnum;
+import com.yun.sell.enums.PayStatusEnum;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -43,13 +45,13 @@ public class OrderMaster {
      */
     private BigDecimal orderAmount;
     /**
-     * 订单状态
+     * 订单状态 默认为新下单
      */
-    private Integer orderStatus;
+    private Integer orderStatus = OrderStatusEnum.NEW.getCode();
     /**
-     * 支付状态
+     * 支付状态 默认为未支付
      */
-    private Integer payStatus;
+    private Integer payStatus = PayStatusEnum.WAIT.getCode();
     /**
      * 创建时间
      */
