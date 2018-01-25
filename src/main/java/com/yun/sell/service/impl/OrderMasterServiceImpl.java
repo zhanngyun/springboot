@@ -39,4 +39,9 @@ public class OrderMasterServiceImpl implements OrderMasterService {
     public Page<OrderMaster> findAll(Pageable pageable) {
         return orderMasterRepository.findAll(pageable);
     }
+
+    @Override
+    public Page<OrderMaster> findByBuyerOpenid(String buyerOpenid, Pageable pageable) {
+        return orderMasterRepository.findByBuyerOpenid(buyerOpenid,pageable);
+    }
 }

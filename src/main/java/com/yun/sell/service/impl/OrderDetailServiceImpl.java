@@ -39,4 +39,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     public Page<OrderDetail> findAll(org.springframework.data.domain.Pageable pageable) {
         return orderDetailRepository.findAll(pageable);
     }
+
+    @Override
+    public List<OrderDetail> findByOrderId(String orderId) {
+        return orderDetailRepository.findByOrderId(orderId);
+    }
 }

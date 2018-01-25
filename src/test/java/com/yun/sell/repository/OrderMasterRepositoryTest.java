@@ -6,6 +6,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
@@ -33,6 +36,13 @@ public class OrderMasterRepositoryTest {
     public void findOneTest(){
         OrderMaster one = orderMasterRepository.findOne("1");
         Assert.assertNotNull(one);
+    }
+
+    @Test
+    public void findByBuyerOpenid(){
+        PageRequest pageRequest = new PageRequest(0,1);
+        Page<OrderMaster> byBuyerOpenid = orderMasterRepository.findByBuyerOpenid("123456", pageRequest);
+        Assert.assertNotEquals(0,byBuyerOpenid.getContent().size());
     }
 
 
