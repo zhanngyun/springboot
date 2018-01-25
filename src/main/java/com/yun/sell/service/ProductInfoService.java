@@ -1,6 +1,7 @@
 package com.yun.sell.service;
 
 import com.yun.sell.domain.ProductInfo;
+import com.yun.sell.dto.CartDTO;
 
 import java.util.List;
 
@@ -19,7 +20,8 @@ public interface ProductInfoService extends BaseService<ProductInfo,String>{
     List<ProductInfo> findProductDown();
 
     //加库存
-
+    void increaseStock(List<CartDTO> cartDTOList);
 
     //减库存
+    void descreaseStock(List<CartDTO> cartDTOList);
 }

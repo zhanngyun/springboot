@@ -1,13 +1,17 @@
 package com.yun.sell.service.impl;
 
 import com.yun.sell.domain.ProductInfo;
+import com.yun.sell.dto.CartDTO;
 import com.yun.sell.enums.ProductStatusEnum;
+import com.yun.sell.enums.ResultEnum;
+import com.yun.sell.exception.SellException;
 import com.yun.sell.repository.ProductInfoRepository;
 import com.yun.sell.service.ProductInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -53,5 +57,30 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     @Override
     public List<ProductInfo> findProductDown() {
         return productInfoRepository.findByProductStatus(ProductStatusEnum.DOWN.getCode());
+    }
+
+    @Override
+    public void increaseStock(List<CartDTO> cartDTOList) {
+
+    }
+
+    @Override
+    @Transactional
+    public void descreaseStock(List<CartDTO> cartDTOList) {
+        for(CartDTO cartDTO:cartDTOList){
+            ProductInfo productInfo = productInfoRepository.findOne(cartDTO.getProductId());
+            if(productInfo  == null){
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+
+            Integer stock = productInfo.getProductStock()-cartDTO.getProductQuantity();
+            if(stock<0){
+                throw new SellException(ResultEnum.PRODUCT_STOCK_ERROR);
+            }
+
+            productInfo.setProductStock(stock);
+            productInfoRepository.save(productInfo);
+        }
+
     }
 }
