@@ -18,5 +18,11 @@ public interface OrderMasterService extends BaseService<OrderDTO,String> {
     /** 订单取消*/
     OrderDTO cancel(OrderDTO orderDTO);
 
+    /** 订单完结*/
+    OrderDTO finish(OrderDTO orderDTO);
+
+    /** 支付订单*/
+    OrderDTO paid(OrderDTO orderDTO);
+
 
 }

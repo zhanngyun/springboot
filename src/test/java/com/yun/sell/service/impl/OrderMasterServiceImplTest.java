@@ -2,6 +2,8 @@ package com.yun.sell.service.impl;
 
 import com.yun.sell.domain.OrderDetail;
 import com.yun.sell.dto.OrderDTO;
+import com.yun.sell.enums.OrderStatusEnum;
+import com.yun.sell.enums.PayStatusEnum;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -59,13 +61,28 @@ public class OrderMasterServiceImplTest {
     }
 
     @Test
-    public void save() {
+    public void cancel() {
+        OrderDTO orderDTO = new OrderDTO();
+        orderDTO.setOrderId("1516870484588583501");
+        OrderDTO cancel = orderMasterService.cancel(orderDTO);
+        Assert.assertNotNull(cancel);
     }
 
     @Test
-    public void findAll() {
+    public void finish() {
+        OrderDTO orderDTO = new OrderDTO();
+        orderDTO.setOrderId("1516870830836513039");
+        OrderDTO cancel = orderMasterService.finish(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(),cancel.getOrderStatus());
     }
 
+    @Test
+    public void paid(){
+        OrderDTO orderDTO = new OrderDTO();
+        orderDTO.setOrderId("1516870269042535771");
+        OrderDTO cancel = orderMasterService.paid(orderDTO);
+        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(),cancel.getPayStatus());
+    }
     @Test
     public void findByBuyerOpenid() {
         PageRequest pageRequest = new PageRequest(0,10);
