@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
  */
 public interface OrderMasterService extends BaseService<OrderDTO,String> {
 
+    /** 通过微信openid查询订单*/
     Page<OrderDTO> findByBuyerOpenid(String buyerOpenid, Pageable pageable);
 
     /** 创建订单*/

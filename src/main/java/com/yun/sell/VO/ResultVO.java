@@ -2,8 +2,6 @@ package com.yun.sell.VO;
 
 import lombok.Data;
 
-import java.util.List;
-
 /**
  * http返回的最外层对象
  * @Author: yzhang
@@ -18,5 +16,5 @@ public class ResultVO<T> {
     private String message;
 
     /**返回的具体内容 */
-    private List<T> data;
+    private T data;
 }

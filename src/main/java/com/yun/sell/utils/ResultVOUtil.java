@@ -15,7 +15,14 @@ public class ResultVOUtil {
         ResultVO resultVO = new ResultVO();
         resultVO.setCode(0);
         resultVO.setMessage("成功");
-        resultVO.setData((List) object);
+        resultVO.setData(object);
+        return resultVO;
+    }
+
+    public static ResultVO success(){
+        ResultVO resultVO = new ResultVO();
+        resultVO.setCode(0);
+        resultVO.setMessage("成功");
         return resultVO;
     }
 }

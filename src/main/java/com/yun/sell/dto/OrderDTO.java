@@ -1,9 +1,10 @@
 package com.yun.sell.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.yun.sell.domain.OrderDetail;
+import com.yun.sell.utils.serializer.DateToLongSerializer;
 import lombok.Data;
 
-import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -49,10 +50,12 @@ public class OrderDTO {
     /**
      * 创建时间
      */
+    @JsonSerialize(using = DateToLongSerializer.class)
     private Date createTime;
     /**
      * 更新时间
      */
+    @JsonSerialize(using = DateToLongSerializer.class)
     private Date updateTime;
 
     private List<OrderDetail> orderDetailList;

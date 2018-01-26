@@ -76,8 +76,8 @@ public class OrderMasterServiceImpl implements OrderMasterService {
         }
         //3.写入订单数据库（orderMaster 和 OrderDetail）
         OrderMaster orderMaster = new OrderMaster();
+        orderDTO.setOrderId(orderId);
         BeanUtils.copyProperties(orderDTO,orderMaster);
-        orderMaster.setOrderId(orderId);
         orderMaster.setOrderAmount(orderAmount);
         orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
         orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());
@@ -128,7 +128,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
         Page<OrderMaster> byBuyerOpenid = orderMasterRepository.findByBuyerOpenid(buyerOpenid, pageable);
         List<OrderDTO> orderDTOList = byBuyerOpenid.getContent().stream().map(e -> {
             OrderDTO orderDTO = new OrderDTO();
-            BeanUtils.copyProperties(orderDTO, e);
+            BeanUtils.copyProperties(e,orderDTO);
             return orderDTO;
         }).collect(Collectors.toList());
         return new PageImpl<>(orderDTOList,pageable,byBuyerOpenid.getTotalPages());
