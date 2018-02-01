@@ -8,10 +8,8 @@ import com.yun.sell.enums.ResultEnum;
 import com.yun.sell.exception.SellException;
 import com.yun.sell.form.OrderForm;
 import com.yun.sell.service.BuyerService;
-import com.yun.sell.service.OrderDetailService;
 import com.yun.sell.service.OrderMasterService;
 import com.yun.sell.utils.ResultVOUtil;
-import org.hibernate.criterion.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +21,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
