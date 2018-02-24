@@ -40,3 +40,10 @@ logging:
     com.imooc.dataobject.mapper: trace
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+
+#SFTP配置
+sftp:
+  userName: icmpSftp
+  password: icmpSftp
+  host: 10.20.131.16
+  port: 22

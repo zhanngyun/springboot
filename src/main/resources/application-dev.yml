@@ -18,10 +18,17 @@ spring:
     check-template-location: true
     cache: false
     template-encoding: UTF-8
-  mvc:
-    static-path-pattern: /**
-  resources:
-    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:E:/
+
+#SFTP配置
+sftp:
+  userName: icmpSftp
+  password: icmpSftp
+  host: 10.20.131.16
+  port: 22
+#  mvc:
+#    static-path-pattern: /**
+#  resources:
+#    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:E:/
 server:
   context-path: /sell
 #logging:
@@ -32,26 +39,33 @@ server:
 #  level:
 #    com.imooc.LoggerTest: debug
 
-wechat:
-  mpAppId: wxd898fcb01713c658
-  mpAppSecret: 47ccc303338cee6e62894fxxxxxxxxxxx
-  openAppId: wx6ad144e54af67d87
-  openAppSecret: 91a2ff6d38a2bbccfb7e9xxxxxx
-  mchId: 1483469312
-  mchKey: 06C56A89949D617xxxxxxxxxxx
-  keyPath: /var/weixin_cert/h5.p12
-  notifyUrl: http://sell.natapp4.cc/sell/pay/notify
-  templateId:
-    orderStatus: e-Cqq67QxD6YNI41iRiqawEYdFavW_7pc7LyEMb-yeQ
+#wechat:
+#  mpAppId: wxd898fcb01713c658
+#  mpAppSecret: 47ccc303338cee6e62894fxxxxxxxxxxx
+#  openAppId: wx6ad144e54af67d87
+#  openAppSecret: 91a2ff6d38a2bbccfb7e9xxxxxx
+#  mchId: 1483469312
+#  mchKey: 06C56A89949D617xxxxxxxxxxx
+#  keyPath: /var/weixin_cert/h5.p12
+#  notifyUrl: http://sell.natapp4.cc/sell/pay/notify
+#  templateId:
+#    orderStatus: e-Cqq67QxD6YNI41iRiqawEYdFavW_7pc7LyEMb-yeQ
 
-projectUrl:
-  wechatMpAuthorize: http://sell.natapp4.cc
-  wechatOpenAuthorize: http://sell.natapp4.cc
-  sell: http://sell.natapp4.cc
+#projectUrl:
+#  wechatMpAuthorize: http://sell.natapp4.cc
+#  wechatOpenAuthorize: http://sell.natapp4.cc
+#  sell: http://sell.natapp4.cc
 logging:
   level:
     com.imooc.dataobject.mapper: trace
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
+#mybatis:
+#  mapper-locations: classpath:mapper/*.xml
+
+
+
+#文件服务器
+fileserver:
+  url: http://10.20.131.16:81/fs
+
 
 

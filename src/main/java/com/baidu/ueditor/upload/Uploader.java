@@ -23,7 +23,7 @@ public class Uploader {
 			state = Base64Uploader.save(this.request.getParameter(filedName),
 					this.conf);
 		} else {
-			state = UploadPictureUtil.save(this.request, this.conf);
+			state = new UploadPictureUtil().save(this.request, this.conf);
 		}
 
 		return state;

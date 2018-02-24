@@ -5,7 +5,7 @@ import com.baidu.ueditor.define.BaseState;
 import com.baidu.ueditor.define.FileType;
 import com.baidu.ueditor.define.State;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -20,23 +20,23 @@ import java.util.Map;
  * @Date: 2018/2/1 18:35
  */
 
+@ConfigurationProperties(locations = "classpath:application-dev.yml",prefix = "sftp")
 public class UploadPictureUtil {
 
 
-    @Value("${sftp.userName}")
-    private static String sftpUserName;
-    @Value("${sftp.password}")
-    private static String sftpPassword;
-    @Value("${sftp.host}")
-    private static String sftpHost;
-    @Value("${sftp.port}")
-    private static Integer sftpPort;
-    @Value("${fileserver.url}")
-    private static String fsUrl;
+    private  String userName;
+
+    private  String password;
 
 
-    public static  State save(HttpServletRequest request,
-                                   Map<String, Object> conf) {
+    private  String host;
+    private  Integer port;
+    private  String fsUrl;
+
+
+
+    public   State save(HttpServletRequest request,
+                        Map<String, Object> conf) {
 
         if (!ServletFileUpload.isMultipartContent(request)) {
             return new BaseState(false, AppInfo.NOT_MULTIPART_CONTENT);
@@ -58,7 +58,7 @@ public class UploadPictureUtil {
                 return new BaseState(false, AppInfo.NOT_ALLOW_FILE_TYPE);
             }
 
-            String url = SFTPUtil.upload(sftpUserName, sftpPassword, sftpHost, sftpPort,
+            String url = SFTPUtil.upload(userName, password, host, port,
                     MaterialConstant.IMG_DIR, 100001L, multipartFile);
             State storageState = new BaseState();
             if(StringUtils.isEmpty(url)){//上传失败
@@ -75,6 +75,7 @@ public class UploadPictureUtil {
 
             return storageState;
         }catch (Exception e){
+            e.printStackTrace();
         }
 
         return new BaseState(false, AppInfo.IO_ERROR);
@@ -87,4 +88,43 @@ public class UploadPictureUtil {
     }
 
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public Integer getPort() {
+        return port;
+    }
+
+    public void setPort(Integer port) {
+        this.port = port;
+    }
+
+    public String getFsUrl() {
+        return fsUrl;
+    }
+
+    public void setFsUrl(String fsUrl) {
+        this.fsUrl = fsUrl;
+    }
 }
