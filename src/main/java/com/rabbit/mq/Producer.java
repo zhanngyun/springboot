@@ -33,7 +33,7 @@ public class Producer {
         //获取信道
         Channel channel = conn.createChannel();
         //发布消息内容
-        byte[] content = "15539730302".getBytes();
+        byte[] content = "15038703422".getBytes();
         //使用direct方式
 //        useDirectMethod(channel,content);
 //        useFanoutMethod(channel,content);

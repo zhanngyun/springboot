@@ -42,7 +42,7 @@ public class TopicConsume1 {
             List<NameValuePair> formparams = new ArrayList<NameValuePair>();
             formparams.add(new BasicNameValuePair("Account","15539730302"));//账号
             formparams.add(new BasicNameValuePair("Pwd","2e61e9ab3b97a1c30d3768b9d"));//接口秘钥
-            formparams.add(new BasicNameValuePair("Content","小云子"));//发送短信内容
+            formparams.add(new BasicNameValuePair("Content","小宝贝,我回来啦"));//发送短信内容
             formparams.add(new BasicNameValuePair("Mobile",message));//发送人联系方式
             formparams.add(new BasicNameValuePair("SignId","39204"));//签名id
             formparams.add(new BasicNameValuePair("TemplateId","32424"));//签名id
